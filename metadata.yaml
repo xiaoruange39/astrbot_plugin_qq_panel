@@ -3,7 +3,6 @@ desc: 管理 QQ 官方机器人的指令面板与单聊自定义菜单，在 Web
 display_name: QQ 官方机器人面板
 author: "xiaoruange39"
 version: 1.0.0
-author: lantao
 support_platforms:
   - qq_official
   - qq_official_webhook
