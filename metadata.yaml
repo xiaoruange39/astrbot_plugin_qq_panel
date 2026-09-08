@@ -1,0 +1,11 @@
+name: astrbot_plugin_qq_panel
+desc: 管理 QQ 官方机器人的指令面板与单聊自定义菜单，在 WebUI 里配置、用管理员指令一键推送到开放平台。
+display_name: QQ 官方机器人面板
+author: "xiaoruange39"
+version: 1.0.0
+author: lantao
+support_platforms:
+  - qq_official
+  - qq_official_webhook
+astrbot_version: ">=4.0.0"
+repo: "https://github.com/xiaoruange39/astrbot_plugin_qq_panel"

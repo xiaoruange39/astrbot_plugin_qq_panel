@@ -1,0 +1,2 @@
+# AstrBot 本体已依赖 aiohttp，这里显式声明以防个别精简环境缺失。
+aiohttp>=3.8

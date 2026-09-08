@@ -1,0 +1,296 @@
+{
+  "panel_items": {
+    "description": "指令面板按钮",
+    "type": "template_list",
+    "hint": "聊天输入框上方那一排可点的按钮。点「添加条目」→ 选一种按钮 → 填好保存，然后在聊天里发 /qqpanel sync 推送给 QQ。同一个聊天场景最多 20 个按钮；一个场景都不勾的条目不会显示（相当于临时停用）。",
+    "templates": {
+      "command": {
+        "name": "指令按钮",
+        "hint": "点一下就把指令填进输入框",
+        "display_item": "command",
+        "items": {
+          "command": {
+            "description": "指令",
+            "type": "string",
+            "default": "/help",
+            "hint": "点击后会被原样填进输入框，所以必须写机器人真认识的指令，比如 /help。最多 14 个字符（一个汉字算 2 个）。"
+          },
+          "desc": {
+            "description": "说明文字",
+            "type": "string",
+            "default": "",
+            "hint": "显示在指令旁边的小字，可以留空。最多 30 个字符（一个汉字算 2 个）。"
+          },
+          "scopes": {
+            "description": "在哪些聊天里显示",
+            "type": "list",
+            "render_type": "checkbox",
+            "options": ["c2c", "group", "channel", "dm"],
+            "labels": ["单聊", "群聊", "频道的文字子频道", "频道私信"],
+            "default": ["c2c", "group"]
+          },
+          "only_admin": {
+            "description": "只给群管理员看",
+            "type": "bool",
+            "default": false,
+            "hint": "只在群聊 / 子频道里有意义。"
+          }
+        }
+      },
+      "link": {
+        "name": "链接按钮",
+        "hint": "点一下就打开网页",
+        "display_item": "title",
+        "items": {
+          "title": {
+            "description": "按钮文字",
+            "type": "string",
+            "default": "使用文档",
+            "hint": "最多 14 个字符（一个汉字算 2 个）。"
+          },
+          "url": {
+            "description": "网址",
+            "type": "string",
+            "default": "https://astrbot.app",
+            "hint": "必须以 https:// 开头，QQ 不接受 http。"
+          },
+          "desc": {
+            "description": "说明文字",
+            "type": "string",
+            "default": "",
+            "hint": "显示在按钮旁边的小字，可以留空。最多 30 个字符（一个汉字算 2 个）。"
+          },
+          "scopes": {
+            "description": "在哪些聊天里显示",
+            "type": "list",
+            "render_type": "checkbox",
+            "options": ["c2c", "group", "channel", "dm"],
+            "labels": ["单聊", "群聊", "频道的文字子频道", "频道私信"],
+            "default": ["c2c", "group"]
+          },
+          "only_admin": {
+            "description": "只给群管理员看",
+            "type": "bool",
+            "default": false,
+            "hint": "只在群聊 / 子频道里有意义。"
+          }
+        }
+      }
+    },
+    "default": [
+      {
+        "__template_key": "command",
+        "command": "/help",
+        "desc": "查看可用指令",
+        "scopes": ["c2c", "group"],
+        "only_admin": false
+      },
+      {
+        "__template_key": "command",
+        "command": "/new",
+        "desc": "开启一个新的对话",
+        "scopes": ["c2c", "group"],
+        "only_admin": false
+      },
+      {
+        "__template_key": "command",
+        "command": "/reset",
+        "desc": "清空当前对话上下文",
+        "scopes": ["c2c", "group"],
+        "only_admin": false
+      },
+      {
+        "__template_key": "link",
+        "title": "使用文档",
+        "url": "https://astrbot.app",
+        "desc": "在浏览器中打开 AstrBot 文档",
+        "scopes": ["c2c", "group"],
+        "only_admin": false
+      }
+    ]
+  },
+  "menu_items": {
+    "description": "单聊底部菜单",
+    "type": "template_list",
+    "hint": "单聊窗口底部的菜单，只对单聊有效，所有人看到的都一样。最多 10 个一级条目。想做二级菜单：先加一个「折叠菜单」，再把其他条目的「放进哪个折叠菜单」填成它的菜单文字。改完在聊天里发 /qqpanel menu sync 推送。",
+    "templates": {
+      "command": {
+        "name": "发送指令",
+        "hint": "点一下就把指令填进输入框",
+        "display_item": "label",
+        "items": {
+          "label": {
+            "description": "菜单文字",
+            "type": "string",
+            "default": "帮助",
+            "hint": "一级条目最多 10 个字符，折叠菜单里的条目最多 14 个（一个汉字算 2 个）。"
+          },
+          "command": {
+            "description": "要发送的指令",
+            "type": "string",
+            "default": "/help",
+            "hint": "点击后会被填进输入框，写机器人真认识的指令。"
+          },
+          "parent": {
+            "description": "放进哪个折叠菜单",
+            "type": "string",
+            "default": "",
+            "hint": "留空 = 直接放在一级菜单。要放进二级菜单，就填那个「折叠菜单」的菜单文字。"
+          }
+        }
+      },
+      "link": {
+        "name": "打开链接",
+        "hint": "点一下就打开网页",
+        "display_item": "label",
+        "items": {
+          "label": {
+            "description": "菜单文字",
+            "type": "string",
+            "default": "使用文档",
+            "hint": "一级条目最多 10 个字符，折叠菜单里的条目最多 14 个（一个汉字算 2 个）。"
+          },
+          "url": {
+            "description": "网址",
+            "type": "string",
+            "default": "https://astrbot.app",
+            "hint": "必须以 https:// 开头，QQ 不接受 http。"
+          },
+          "parent": {
+            "description": "放进哪个折叠菜单",
+            "type": "string",
+            "default": "",
+            "hint": "留空 = 直接放在一级菜单。要放进二级菜单，就填那个「折叠菜单」的菜单文字。"
+          }
+        }
+      },
+      "folder": {
+        "name": "折叠菜单",
+        "hint": "二级菜单的入口，点开后展示里面的条目（最多 5 个）",
+        "display_item": "label",
+        "items": {
+          "label": {
+            "description": "菜单文字",
+            "type": "string",
+            "default": "更多",
+            "hint": "最多 10 个字符（一个汉字算 2 个）。把其他条目的「放进哪个折叠菜单」填成这个文字，它们就会进到这里；一个空的折叠菜单是不合法的。"
+          }
+        }
+      },
+      "switch": {
+        "name": "开关",
+        "hint": "一个可以开合的开关，只能放在一级菜单",
+        "display_item": "label",
+        "items": {
+          "label": {
+            "description": "菜单文字",
+            "type": "string",
+            "default": "联网搜索",
+            "hint": "最多 10 个字符（一个汉字算 2 个）。"
+          },
+          "switch_id": {
+            "description": "开关标识",
+            "type": "string",
+            "default": "search",
+            "hint": "用英文、数字、下划线。用户打开开关后，他之后发的消息的 ext 里会带上「这个标识=1」，需要你在自己的业务插件里读取并处理，本插件只负责把开关配上去。"
+          },
+          "default_on": {
+            "description": "默认是打开的",
+            "type": "bool",
+            "default": false
+          }
+        }
+      }
+    },
+    "default": [
+      { "__template_key": "command", "label": "帮助", "command": "/help", "parent": "" },
+      { "__template_key": "command", "label": "新对话", "command": "/new", "parent": "" },
+      { "__template_key": "link", "label": "使用文档", "url": "https://astrbot.app", "parent": "" },
+      { "__template_key": "folder", "label": "更多" },
+      { "__template_key": "command", "label": "重置对话", "command": "/reset", "parent": "更多" },
+      { "__template_key": "command", "label": "查看用量", "command": "/stats", "parent": "更多" },
+      {
+        "__template_key": "switch",
+        "label": "联网搜索",
+        "switch_id": "search",
+        "default_on": false
+      }
+    ]
+  },
+  "auto_sync_on_start": {
+    "description": "AstrBot 启动后自动推送指令面板",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后每次启动 AstrBot 都会把上面的按钮推送一次（只写日志，不发消息，失败也不影响启动）。关着的话就用 /qqpanel sync 手动推。"
+  },
+  "auto_sync_menu": {
+    "description": "启动时也推送单聊底部菜单",
+    "type": "bool",
+    "default": false,
+    "hint": "只有上面那项也开着才生效。菜单接口每分钟只允许改 5 次，而菜单一般很少变，建议保持关闭、需要时用 /qqpanel menu sync。"
+  },
+  "delete_removed_panels": {
+    "description": "自动删除线上多余的面板",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后，如果某个聊天场景下的按钮全被删空了，同步时会顺手把线上那个面板删掉。关着的话只在同步结果里提示，你自己用 /qqpanel delete <panel_id> 清理。"
+  },
+  "credentials": {
+    "description": "手动指定凭证（一般不用填）",
+    "type": "object",
+    "hint": "默认直接复用 AstrBot 里已启用的 QQ 官方机器人适配器的 AppID / AppSecret，不用重复填。只有在没启用适配器、或想用另一套凭证时才填这里；两项要一起填才生效。",
+    "items": {
+      "appid": {
+        "description": "AppID（机器人 ID）",
+        "type": "string",
+        "default": "",
+        "secret": true
+      },
+      "secret": {
+        "description": "AppSecret（机器人密钥）",
+        "type": "string",
+        "default": "",
+        "secret": true
+      }
+    }
+  },
+  "target_user_openids": {
+    "description": "单聊面板只对这些用户生效",
+    "type": "list",
+    "default": [],
+    "collapsed": true,
+    "hint": "留空 = 对所有用户生效（推荐）。填了之后，单聊面板就只有列表里的 user_openid 能看到，最多 1000 个。openid 可以在收到消息时从事件里拿到。"
+  },
+  "target_group_openids": {
+    "description": "群聊面板只对这些群生效",
+    "type": "list",
+    "default": [],
+    "collapsed": true,
+    "hint": "留空 = 对所有群生效（推荐）。填了之后，群聊面板就只有列表里的 group_openid 能看到，最多 1000 个。"
+  },
+  "platform_id": {
+    "description": "指定 QQ 官方机器人适配器 ID",
+    "type": "string",
+    "default": "",
+    "collapsed": true,
+    "hint": "留空会自动找已启用的 qq_official / qq_official_webhook 适配器。只有同时启用了多个 QQ 官方机器人时才需要填（填 WebUI 消息平台列表里的那个 ID），否则插件会报错让你指定。"
+  },
+  "advanced_panels_json": {
+    "description": "额外的面板（高级，JSON）",
+    "type": "text",
+    "editor_mode": true,
+    "editor_language": "json",
+    "default": "",
+    "collapsed": true,
+    "hint": "留空即可，上面的可视化配置已经够用。只有需要「不同人群看到不同按钮」这类高级玩法时才填：这里写一个面板数组，会追加到自动生成的面板后面（key 不能用 auto_ 开头）。字段说明见插件 README 的「高级 JSON 配置」。"
+  },
+  "advanced_menu_json": {
+    "description": "自定义菜单原始配置（高级，JSON）",
+    "type": "text",
+    "editor_mode": true,
+    "editor_language": "json",
+    "default": "",
+    "collapsed": true,
+    "hint": "留空即可。一旦填了，就完全取代上面的「单聊底部菜单」，不再读取可视化条目；直接按 QQ 官方文档的 Menu 结构推送。"
+  }
+}
