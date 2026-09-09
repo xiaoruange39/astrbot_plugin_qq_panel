@@ -322,4 +322,8 @@
 
 ## 许可
 
-与 AstrBot 主项目保持一致。
+本项目采用 [MIT](https://github.com/xiaoruange39/astrbot_plugin_qq_panel/blob/main/LICENSE) 许可证。
+
+## QQ群
+
+123180736
